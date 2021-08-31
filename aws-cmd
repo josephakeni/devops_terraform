@@ -1,0 +1,7 @@
+This is to launch instances using aws cli:
+
+aws ec2 run-instances \
+       --image-id ami-0ac43988dfd31ab9a \
+       --instance-type t2.micro \
+       --subnet-id subnet-0b95bed9a447ec436 \
+       --key-name cloud1a
