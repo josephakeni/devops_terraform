@@ -1,13 +1,7 @@
 region = "eu-west-1"
 profile = "default"
 instance_type = "t2.micro"
-public_ubuntu_count = 1
-public_instance_count = 0
-kbrooker_count = 0
-zookeeper_count = 0
-web_instance_count = 0
-environment = "develoment"
-role = "super-user"
-toolServer = "kafka_node"
-webServer = "webServer"
-ubuntuServer = "toolServer"
+prod_server_count = 1
+environment = "production"
+role = "Prod_App_Server"
+prod_server = "Prod_App_Server"
