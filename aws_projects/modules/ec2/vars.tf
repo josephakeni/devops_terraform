@@ -7,6 +7,9 @@ variable "instance_type" {
   default = "t2.micro"
 }
 
+variable iam_role {}
+
+
 variable "subnet_id" {}
 
 variable "my_key_name" {
