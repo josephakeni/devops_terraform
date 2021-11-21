@@ -3,7 +3,7 @@
 ############################################
 terraform {
   backend "s3" {
-    bucket = "cloudpart1buk"
+    bucket = "cloudpart1buk1"
     key    = "part1/terraform.tfstate"
     region = "eu-west-1"
     /*

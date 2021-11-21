@@ -47,3 +47,5 @@ variable "prod_server" {}
 # variable "webServer" {}
 # variable "ubuntuServer" {}
 # variable "toolServer" {}
+
+variable "aws_vpc_main" {} 
