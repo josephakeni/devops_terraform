@@ -1,36 +1,17 @@
 ############################################
 #           PUBLIC SUBNETS                 #
 ############################################
-resource "aws_subnet" "public_subnet_a" {
+
+resource "aws_subnet" "public_subnet" {
   vpc_id     = "${aws_vpc.main.id}"
-  cidr_block = "${var.public_subnet_a_cidr}"
-  availability_zone="${var.availability_zone["az_a"]}"
+  count                   = length(var.public_subnets)
+  cidr_block        = element(var.public_subnets, count.index)
+  availability_zone       = element(var.availability_zones, count.index)
   map_public_ip_on_launch="true"
 
   tags = {
-    Name = "public_subnet_a"
-  }
-}
-
-resource "aws_subnet" "public_subnet_b" {
-  vpc_id     = "${aws_vpc.main.id}"
-  cidr_block = "${var.public_subnet_b_cidr}"
-  availability_zone="${var.availability_zone["az_b"]}"
-  map_public_ip_on_launch="true"
-
-  tags = {
-    Name = "public_subnet_b"
-  }
-}
-
-resource "aws_subnet" "public_subnet_c" {
-  vpc_id     = "${aws_vpc.main.id}"
-  cidr_block = "${var.public_subnet_c_cidr}"
-  availability_zone="${var.availability_zone["az_c"]}"
-  map_public_ip_on_launch="true"
-
-  tags = {
-    Name = "public_subnet_c"
+    Name        = "${var.name}-public-subnet-${var.environment}-${format("%03d", count.index+1)}"
+    Environment = var.environment
   }
 }
 
@@ -38,32 +19,19 @@ resource "aws_subnet" "public_subnet_c" {
 #           PRIVATE SUBNET                 #
 ############################################
 
-resource "aws_subnet" "private_subnet_a" {
+resource "aws_subnet" "private_subnet" {
   vpc_id     = "${aws_vpc.main.id}"
   /*
   First IP	10.0.16.0
   Last IP	10.0.31.255
   Total Host	4096
   */
-  cidr_block = "${var.private_subnet_a_cidr}"
-  availability_zone="${var.availability_zone["az_a"]}"
+  count                   = length(var.private_subnets)
+  cidr_block        = element(var.private_subnets, count.index)
+  availability_zone       = element(var.availability_zones, count.index)
 
   tags = {
-    Name = "private_subnet_a"
-  }
-}
-
-resource "aws_subnet" "private_subnet_b" {
-  vpc_id     = "${aws_vpc.main.id}"
-  /*
-  First IP	10.0.32.0
-  Last IP	10.0.47.255
-  Total Host	4096
-  */
-  cidr_block = "${var.private_subnet_b_cidr}"
-  availability_zone="${var.availability_zone["az_b"]}"
-
-  tags = {
-    Name = "private_subnet_b"
+    Name        = "${var.name}-private-subnet-${var.environment}-${format("%03d", count.index+1)}"
+    Environment = var.environment
   }
 }

@@ -6,24 +6,12 @@ output "main_vpc_id" {
   value = "${aws_vpc.main.id}"
 }
 
-output "public_subnet_a_id" {
-  value = "${aws_subnet.public_subnet_a.id}"
+output "public_subnets" {
+  value = "${aws_subnet.public_subnet.*.id}"
 }
 
-output "public_subnet_b_id" {
-  value = "${aws_subnet.public_subnet_b.id}"
-}
-
-output "public_subnet_c_id" {
-  value = "${aws_subnet.public_subnet_c.id}"
-}
-
-output "private_subnet_a_id" {
-  value = "${aws_subnet.private_subnet_a.id}"
-}
-
-output "private_subnet_b_id" {
-  value = "${aws_subnet.private_subnet_b.id}"
+output "private_subnets" {
+  value = "${aws_subnet.private_subnet.*.id}"
 }
 
 output "internet_gateway_id" {
@@ -62,20 +50,10 @@ output "private_route_table_id" {
   value = "${aws_route_table.private_route_table.id}"
 }
 
-output "main_public_1_a_id" {
-  value = "${aws_route_table_association.main_public_1_a.id}"
-}
-output "main_public_1_b_id" {
-  value = "${aws_route_table_association.main_public_1_b.id}"
+output "main_public_ids" {
+  value = "${aws_route_table_association.main_public.*.id}"
 }
 
-output "main_public_1_c_id" {
-  value = "${aws_route_table_association.main_public_1_c.id}"
-}
-
-output "main_private_1_a_id" {
-  value = "${aws_route_table_association.main_private_1_a.id}"
-}
-output "main_private_1_b_id" {
-  value = "${aws_route_table_association.main_private_1_b.id}"
+output "main_private_ids" {
+  value = "${aws_route_table_association.main_private.*.id}"
 }

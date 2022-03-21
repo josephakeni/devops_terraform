@@ -44,27 +44,15 @@ resource "aws_route_table" "private_route_table" {
 If you do not explicitly associate a subnet with a route table 
 you created, AWS will implicitly associate it with the main route table
 */
-resource "aws_route_table_association" "main_public_1_a" {
-  subnet_id      = "${aws_subnet.public_subnet_a.id}"
-  route_table_id = "${aws_route_table.public_route_table.id}"
+resource "aws_route_table_association" "main_private" {
+  count          = length(var.private_subnets)
+  subnet_id      = element(aws_subnet.private_subnet.*.id, count.index)
+  route_table_id = element(aws_route_table.private_route_table.*.id, count.index)
 }
 
-resource "aws_route_table_association" "main_public_1_b" {
-  subnet_id      = "${aws_subnet.public_subnet_b.id}"
-  route_table_id = "${aws_route_table.public_route_table.id}"
-}
-
-resource "aws_route_table_association" "main_public_1_c" {
-  subnet_id      = "${aws_subnet.public_subnet_c.id}"
-  route_table_id = "${aws_route_table.public_route_table.id}"
-}
-
-resource "aws_route_table_association" "main_private_1_a" {
-  subnet_id      = "${aws_subnet.private_subnet_a.id}"
-  route_table_id = "${aws_route_table.private_route_table.id}"
-}
-
-resource "aws_route_table_association" "main_private_1_b" {
-  subnet_id      = "${aws_subnet.private_subnet_b.id}"
-  route_table_id = "${aws_route_table.private_route_table.id}"
+resource "aws_route_table_association" "main_public" {
+  count          = length(var.public_subnets)
+  subnet_id      = element(aws_subnet.public_subnet.*.id, count.index)
+  #route_table_id = aws_route_table.public.id
+  route_table_id = element(aws_route_table.public_route_table.*.id, count.index)
 }

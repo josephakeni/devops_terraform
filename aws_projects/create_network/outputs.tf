@@ -2,24 +2,12 @@ output "main_vpc_id" {
   value = module.main_vpc.main_vpc_id
 }
 
-output "private_subnet_a_id" {
-  value = module.main_vpc.private_subnet_a_id
+output "private_subnets" {
+  value = module.main_vpc.private_subnets
 }
 
-output "private_subnet_b_id" {
-  value = module.main_vpc.private_subnet_b_id
-}
-
-output "public_subnet_a_id" {
-  value = module.main_vpc.public_subnet_a_id
-}
-
-output "public_subnet_b_id" {
-  value = module.main_vpc.public_subnet_b_id
-}
-
-output "public_subnet_c_id" {
-  value = module.main_vpc.public_subnet_c_id
+output "public_subnets" {
+  value = module.main_vpc.public_subnets
 }
 
 output "internet_gateway_id" {
@@ -61,20 +49,10 @@ output "private_route_table_id" {
   value = module.main_vpc.private_route_table_id
 }
 
-output "main_public_1_a_id" {
-  value = module.main_vpc.main_public_1_a_id
-}
-output "main_public_1_b_id" {
-  value = module.main_vpc.main_public_1_b_id
+output "main_public_ids" {
+  value = module.main_vpc.main_public_ids
 }
 
-output "main_public_1_c_id" {
-  value = module.main_vpc.main_public_1_c_id
-}
-
-output "main_private_1_a_id" {
-  value = module.main_vpc.main_private_1_a_id
-}
-output "main_private_1_b_id" {
-  value = module.main_vpc.main_private_1_b_id
+output "main_private_ids" {
+  value = module.main_vpc.main_private_ids
 }

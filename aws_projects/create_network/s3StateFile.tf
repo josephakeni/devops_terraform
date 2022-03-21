@@ -3,7 +3,7 @@
 ############################################
 terraform {
   backend "s3" {
-    bucket = "cloudpart1buk1"
+    bucket = "cloudpart1buk"
     key    = "part1/terraform.tfstate"
     region = "eu-west-1"
     /*
@@ -14,5 +14,12 @@ terraform {
         providing credentials for the AWS Provider
     */
     #profile = "devop03"
+  }
+}
+terraform {
+  required_providers {
+    local = {
+      source = "hashicorp/local"
+    }
   }
 }
