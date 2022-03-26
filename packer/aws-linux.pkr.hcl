@@ -1,5 +1,5 @@
 source "amazon-ebs" "amazon-linux" {
-  ami_name      = "task2-packer-amazon-linux"
+  ami_name      = "task2-packer-amazon-linux-${local.timestamp}"
   instance_type = "t2.micro"
   region        = "eu-west-1"
   source_ami_filter {
