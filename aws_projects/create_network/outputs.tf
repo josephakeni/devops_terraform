@@ -18,9 +18,13 @@ output "main_sg_id" {
   value = module.main_vpc.main_sg_id
 }
 
-output "splunk_sg_id" {
-  value = module.main_vpc.splunk_sg_id
+output "sg_id" {
+  value = module.security_groups.sg_id
 }
+
+# output "tunde_sg" {
+#   value = module.tunde_sg.sg_id
+# }
 
 output "kafka_sg_id" {
   value = module.main_vpc.kafka_sg_id

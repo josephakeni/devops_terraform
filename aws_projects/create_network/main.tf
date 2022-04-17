@@ -14,6 +14,35 @@ module "main_vpc" {
   availability_zones  = var.availability_zones
 }
 
+module "security_groups" {
+  source              = "../modules/securityGroups"
+  aws_vpc_main        = data.terraform_remote_state.network.outputs.main_vpc_id
+  name                = "cb-load-security-group"
+  description         = "controls access to the ALB"
+  ingress_from_port   = 3000
+  ingress_to_port     = 3000
+  egress_from_port    = 0
+  egress_to_port      = 0
+  ingress_cidr_blocks = "0.0.0.0/0"
+  egress_cidr_blocks  = "0.0.0.0/0"
+  protocol            = "-1"
+}
+
+# module "tunde_sg" {
+#   source = "../modules/securityGroups"
+#   aws_vpc_main = data.terraform_remote_state.network.outputs.main_vpc_id 
+#   name = "tunde-load-security-group" 
+#   description = "controls access to the ALB"
+#   ingress_from_port = 3000 
+#   ingress_to_port = 3000
+#   egress_from_port = 0 
+#   egress_to_port = 0
+#   ingress_cidr_blocks = "0.0.0.0/0" 
+#   egress_cidr_blocks = "0.0.0.0/0"
+#   protocol = "-1"
+# }
+
+
 #module "alb" {
 #  source       = "../modules/alb"
 #  aws_vpc_main = data.terraform_remote_state.network.outputs.main_vpc_id

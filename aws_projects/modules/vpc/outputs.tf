@@ -22,10 +22,6 @@ output "main_sg_id" {
   value = "${aws_security_group.main_sg.id}"
 }
 
-output "splunk_sg_id" {
-  value = "${aws_security_group.splunk_sg.id}"
-}
-
 output "kafka_sg_id" {
   value = "${aws_security_group.kafka_sg.id}"
 }
