@@ -13,6 +13,10 @@ variable "main_sg_id" {}
  
 variable "aws_vpc_main" {} 
 
+variable "health_check_path" {
+  default = "/"
+}
+
 #variable "my_private_key"{
 #    // This is where the private key is stored on the local machine
 #    default= "~/.ssh/cloud1a.pem"

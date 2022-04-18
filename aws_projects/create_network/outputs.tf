@@ -18,23 +18,8 @@ output "main_sg_id" {
   value = module.main_vpc.main_sg_id
 }
 
-output "sg_id" {
-  value = module.security_groups.sg_id
-}
-
-# output "tunde_sg" {
-#   value = module.tunde_sg.sg_id
-# }
-
 output "kafka_sg_id" {
-  value = module.main_vpc.kafka_sg_id
-}
-
-output "zookeeper_sg_id" {
-  value = module.main_vpc.zookeeper_sg_id
-}
-output "monitor_sg_id" {
-  value = module.main_vpc.monitor_sg_id
+  value = module.kafka_sg.sg_id
 }
 
 # output "nat_eip_id" {
