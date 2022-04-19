@@ -1,12 +1,12 @@
 # ALB Security Group: Edit to restrict access to the application
 resource "aws_security_group" "sg" {
-  name        = "${var.name}"
+  name        = var.name
   description = var.description #"controls access to the ALB"
-  vpc_id   = "${var.aws_vpc_main}"
+  vpc_id      = var.aws_vpc_main
 
-  tags ={
-        Name = var.name
-    }
+  tags = {
+    Name = var.name
+  }
 }
 
 resource "aws_security_group_rule" "ingress_rules" {

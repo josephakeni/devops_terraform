@@ -7,7 +7,7 @@ variable "instance_type" {
   default = "t2.micro"
 }
 
-variable iam_role {}
+variable "iam_role" {}
 
 
 variable "subnet_id" {}
@@ -20,9 +20,9 @@ variable "main_sg_id" {}
 
 variable "bootstrap_script" {}
 
-variable "my_private_key"{
-    // This is where the private key is stored on the local machine
-    default= "~/.ssh/cloud1a.pem"
+variable "my_private_key" {
+  // This is where the private key is stored on the local machine
+  default = "~/.ssh/cloud1a.pem"
 }
 
 variable "name" {}

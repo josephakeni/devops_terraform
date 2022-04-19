@@ -18,9 +18,9 @@ output "main_sg_id" {
   value = module.main_vpc.main_sg_id
 }
 
-output "kafka_sg_id" {
-  value = module.kafka_sg.sg_id
-}
+# output "kafka_sg_id" {
+#   value = module.kafka_sg.sg_id
+# }
 
 # output "nat_eip_id" {
 #   value = "${module.main_vpc.nat_eip_id}"
@@ -45,3 +45,15 @@ output "main_public_ids" {
 output "main_private_ids" {
   value = module.main_vpc.main_private_ids
 }
+
+# output "aws_lb_target_group_id" {
+#   value = module.alb.aws_lb_target_group_id
+# }
+
+# output "aws_lb_listener_front_end" {
+#   value = module.alb.aws_lb_listener_front_end
+# }
+
+# output "alb_hostname" {
+#   value = module.alb.alb_hostname
+# }

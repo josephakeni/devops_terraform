@@ -10,7 +10,7 @@ variable "instance_type" {
   default = "t2.micro"
 }
 
-variable iam_role {
+variable "iam_role" {
   type        = string
   default     = "TundeSSMRole"
   description = "SSM IAM Role"

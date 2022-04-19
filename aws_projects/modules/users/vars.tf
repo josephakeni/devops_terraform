@@ -1,2 +1,2 @@
 variable "username" {}
-variable group_name {}
+variable "group_name" {}

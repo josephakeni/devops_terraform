@@ -40,49 +40,51 @@ variable "availability_zones" {
   default = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
 }
 
+variable "app_port" {}
+
 variable "ingress_rules" {
-    type = list(object({
-      from_port   = number
-      to_port     = number
-      protocol    = string
-      cidr_block  = string
-      description = string
-    }))
-    default     = [
-        # {
-        #   from_port   = 22
-        #   to_port     = 22
-        #   protocol    = "tcp"
-        #   cidr_block  = "0.0.0.0/0"
-        #   description = "SSH Port"
-        # },
-        # {
-        #   from_port   = 80
-        #   to_port     = 80
-        #   protocol    = "tcp"
-        #   cidr_block  = "0.0.0.0/0"
-        #   description = "test"
-        # },
-        # {
-        #   from_port   = 8080
-        #   to_port     = 8080
-        #   protocol    = "tcp"
-        #   cidr_block  = "0.0.0.0/0"
-        #   description = "test"
-        # },
-        # {
-        #   from_port   = 3000
-        #   to_port     = 3000
-        #   protocol    = "tcp"
-        #   cidr_block  = "0.0.0.0/0"
-        #   description = "test"
-        # },
-        # {
-        #   from_port   = -1
-        #   to_port     = -1
-        #   protocol    = "icmp"
-        #   cidr_block  = "0.0.0.0/0"
-        #   description = "test"
-        # },
-    ]
+  type = list(object({
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_block  = string
+    description = string
+  }))
+  default = [
+    # {
+    #   from_port   = 22
+    #   to_port     = 22
+    #   protocol    = "tcp"
+    #   cidr_block  = "0.0.0.0/0"
+    #   description = "SSH Port"
+    # },
+    # {
+    #   from_port   = 80
+    #   to_port     = 80
+    #   protocol    = "tcp"
+    #   cidr_block  = "0.0.0.0/0"
+    #   description = "test"
+    # },
+    # {
+    #   from_port   = 8080
+    #   to_port     = 8080
+    #   protocol    = "tcp"
+    #   cidr_block  = "0.0.0.0/0"
+    #   description = "test"
+    # },
+    # {
+    #   from_port   = 3000
+    #   to_port     = 3000
+    #   protocol    = "tcp"
+    #   cidr_block  = "0.0.0.0/0"
+    #   description = "test"
+    # },
+    # {
+    #   from_port   = -1
+    #   to_port     = -1
+    #   protocol    = "icmp"
+    #   cidr_block  = "0.0.0.0/0"
+    #   description = "test"
+    # },
+  ]
 }

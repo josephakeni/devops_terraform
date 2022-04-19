@@ -14,19 +14,20 @@ module "main_vpc" {
   availability_zones  = var.availability_zones
 }
 
-module "kafka_sg" {
-  source              = "../modules/securityGroups"
-  aws_vpc_main        = data.terraform_remote_state.network.outputs.main_vpc_id
-  name                = "kafka_sg"
-  description         = "Allow traffic to KAFKA from instances"
-  ingress_rules = var.ingress_rules
-  
-}
+# module "kafka_sg" {
+#   source              = "../modules/securityGroups"
+#   aws_vpc_main        = data.terraform_remote_state.network.outputs.main_vpc_id
+#   name                = "kafka_sg"
+#   description         = "Allow traffic to KAFKA from instances"
+#   ingress_rules = var.ingress_rules
 
-#module "alb" {
+# }
+
+# module "alb" {
 #  source       = "../modules/alb"
 #  aws_vpc_main = data.terraform_remote_state.network.outputs.main_vpc_id
-#  subnet_id    = [data.terraform_remote_state.network.outputs.public_subnet_a_id, data.terraform_remote_state.network.outputs.public_subnet_b_id]
+#  subnet_id    = [data.terraform_remote_state.network.outputs.public_subnets[0], data.terraform_remote_state.network.outputs.public_subnets[1]]
 #  main_sg_id   = data.terraform_remote_state.network.outputs.main_sg_id
 #  name         = "prod-alb"
-#}
+#  app_port = var.app_port
+# }

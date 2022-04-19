@@ -13,13 +13,13 @@
 # }
 
 module "ProdAppServer" {
-  source           = "../modules/ec2"
-  instance_count   = var.prod_server_count
-  ami_id           = data.aws_ami.amazon-linux.id
-  instance_type    = var.instance_type
-  iam_role         = var.iam_role
-  subnet_id        = [data.terraform_remote_state.network.outputs.private_subnets[1]]
-  
+  source         = "../modules/ec2"
+  instance_count = var.prod_server_count
+  ami_id         = data.aws_ami.amazon-linux.id
+  instance_type  = var.instance_type
+  iam_role       = var.iam_role
+  subnet_id      = [data.terraform_remote_state.network.outputs.private_subnets[1]]
+
   main_sg_id       = data.terraform_remote_state.network.outputs.main_sg_id
   bootstrap_script = [var.installApp["none"]]
   name             = var.prod_server
