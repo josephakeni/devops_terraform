@@ -1,14 +1,14 @@
 resource "aws_alb" "main" {
-  name            = "cb-load-balancer"
-  subnets         = [data.terraform_remote_state.network.outputs.public_subnets[0], data.terraform_remote_state.network.outputs.public_subnets[1]] #aws_subnet.public.*.id
-  security_groups = [aws_security_group.lb.id]
+  name            = "${var.app_name}-load-balancer"
+  subnets         = var.subnets 
+  security_groups = var.security_groups
 }
 
 resource "aws_alb_target_group" "app" {
-  name        = "cb-target-group"
+  name        = "${var.app_name}-target-group"
   port        = 80
   protocol    = "HTTP"
-  vpc_id      = data.terraform_remote_state.network.outputs.main_vpc_id
+  vpc_id      = var.aws_vpc_main #var.aws_vpc_main
   target_type = "ip"
 
   health_check {

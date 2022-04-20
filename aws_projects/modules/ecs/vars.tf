@@ -51,3 +51,9 @@ variable "fargate_memory" {
   description = "Fargate instance memory to provision (in MiB)"
   default     = "2048"
 }
+
+variable "aws_vpc_main" {}
+variable "subnets" {}
+variable "security_groups" {}
+variable "app_name" {}
+variable "container_name" {}
