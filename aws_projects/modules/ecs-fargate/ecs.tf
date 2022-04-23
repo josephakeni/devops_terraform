@@ -8,19 +8,21 @@ data "template_file" "cb_app" {
   vars = {
     app_image      = var.app_image
     app_port       = var.app_port
-    fargate_cpu    = var.fargate_cpu
-    fargate_memory = var.fargate_memory
+    cpu_size    = var.cpu_size
+    memory_size = var.memory_size
     aws_region     = var.aws_region
+    network_mode = var.network_mode
+    container_name = var.container_name
   }
 }
 
 resource "aws_ecs_task_definition" "app" {
   family                   = "${var.app_name}-app-task"
-  execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
-  network_mode             = "awsvpc"
-  requires_compatibilities = ["FARGATE"]
-  cpu                      = var.fargate_cpu
-  memory                   = var.fargate_memory
+  execution_role_arn       = var.execution_role_arn #aws_iam_role.ecs_task_execution_role.arn
+  network_mode             = var.network_mode #"awsvpc"
+  requires_compatibilities = [var.launch_type]
+  cpu                      = var.cpu_size
+  memory                   = var.memory_size
   container_definitions    = data.template_file.cb_app.rendered
 }
 
@@ -29,7 +31,7 @@ resource "aws_ecs_service" "main" {
   cluster         = aws_ecs_cluster.main.id
   task_definition = aws_ecs_task_definition.app.arn
   desired_count   = var.app_count
-  launch_type     = "FARGATE"
+  launch_type     = var.launch_type #"FARGATE"
 
   network_configuration {
     security_groups  = [data.terraform_remote_state.network.outputs.ecs-lbsg]
@@ -43,5 +45,5 @@ resource "aws_ecs_service" "main" {
     container_port   = var.app_port
   }
 
-  depends_on = [aws_alb_listener.front_end, aws_iam_role_policy_attachment.ecs-task-execution-role-policy-attachment]
+  # depends_on = [aws_alb_listener.front_end, aws_iam_role_policy_attachment.ecs-task-execution-role-policy-attachment]
 }

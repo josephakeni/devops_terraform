@@ -1,10 +1,10 @@
 [
   {
-    "name": "cb-app",
+    "name": "${container_name}",
     "image": "${app_image}",
-    "cpu": ${fargate_cpu},
-    "memory": ${fargate_memory},
-    "networkMode": "awsvpc",
+    "cpu": ${cpu_size},
+    "memory": ${memory_size},
+    "networkMode": "${network_mode}",
     "logConfiguration": {
         "logDriver": "awslogs",
         "options": {

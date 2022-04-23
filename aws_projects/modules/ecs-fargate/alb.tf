@@ -8,8 +8,8 @@ resource "aws_alb_target_group" "app" {
   name        = "${var.app_name}-target-group"
   port        = 80
   protocol    = "HTTP"
-  vpc_id      = var.aws_vpc_main #var.aws_vpc_main
-  target_type = "ip"
+  vpc_id      = var.aws_vpc_main 
+  target_type = var.target_type #"ip"
 
   health_check {
     healthy_threshold   = "3"
