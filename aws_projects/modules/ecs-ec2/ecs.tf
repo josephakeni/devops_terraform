@@ -1,29 +1,39 @@
 resource "aws_ecs_cluster" "main" {
-  name = "KKecs-ec2-cluster"
-}
+  name = "${var.ecs_cluster_name}-cluster"
+  lifecycle {
+    create_before_destroy = true
+  }
 
-data "template_file" "ec2_cb_app" {
-  template = file("../../templates/ecs/ec2_cb_app.json.tpl")
-
-  # vars = {
-  #   app_image      = var.app_image
-  #   app_port       = var.app_port
-  #   cpu_size    = var.cpu_size
-  #   memory_size = var.memory_size
-  #   aws_region     = var.aws_region
-  #   network_mode = var.network_mode
-  #   container_name = var.container_name
-  # }
+  setting {
+    name  = "containerInsights"
+    value = "enabled"
+  }
 }
 
 resource "aws_ecs_task_definition" "app" {
-  family                   = "ec2_cb_-app-task"
+  family                   = "${var.ecs_cluster_name}-app-task"
+  network_mode             = var.network_mode  #"bridge"
+  requires_compatibilities = [var.launch_type] #["EC2"]
   container_definitions    = data.template_file.ec2_cb_app.rendered
+  task_role_arn            = var.execution_role_arn #"arn:aws:iam::399839753928:role/ecsTaskExecutionRole"
 }
 
 resource "aws_ecs_service" "main" {
-  name            = "ec2_cb_app-service"
-  cluster         = aws_ecs_cluster.main.id
-  task_definition = aws_ecs_task_definition.app.arn
-  desired_count   = 2 #var.app_count
+  name                    = "ec2_cb_app-service"
+  cluster                 = aws_ecs_cluster.main.id
+  task_definition         = "${aws_ecs_task_definition.app.family}:${max("${aws_ecs_task_definition.app.revision}")}"
+  desired_count           = var.app_count
+  scheduling_strategy     = "REPLICA"
+  enable_ecs_managed_tags = true
+  force_new_deployment    = true
+  launch_type             = var.launch_type #"EC2"
+
+  load_balancer {
+    target_group_arn = aws_alb_target_group.main.arn
+    container_name   = var.container_name
+    container_port   = var.app_port #3000
+  }
+  deployment_controller {
+    type = "ECS"
+  }
 }

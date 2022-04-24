@@ -52,7 +52,7 @@ variable "memory_size" {
   default     = "512"
 }
 
-variable network_mode {}
+variable "network_mode" {}
 variable "aws_vpc_main" {}
 variable "subnets" {}
 variable "security_groups" {}

@@ -28,19 +28,19 @@
 #   default     = "jakeni/jotonia-app:myapp1"
 # }
 
-# variable "app_port" {
-#   description = "Port exposed by the docker image to redirect traffic to"
-#   default     = 3000
-# }
+variable "app_port" {
+  description = "Port exposed by the docker image to redirect traffic to"
+  default     = 3000
+}
 
-# variable "app_count" {
-#   description = "Number of docker containers to run"
-#   default     = 1
-# }
+variable "app_count" {
+  description = "Number of docker containers to run"
+  default     = 1
+}
 
-# variable "health_check_path" {
-#   default = "/"
-# }
+variable "health_check_path" {
+  default = "/"
+}
 
 # variable "cpu_size" {
 #   description = "Fargate instance CPU units to provision (1 vCPU = 1024 CPU units)"
@@ -52,13 +52,19 @@
 #   default     = "512"
 # }
 
-# variable network_mode {}
-# variable "aws_vpc_main" {}
-# variable "subnets" {}
-# variable "security_groups" {}
+variable "network_mode" {}
+variable "aws_vpc_main" {}
+variable "subnets" {}
+variable "security_groups" {}
 # variable "app_name" {}
-# variable "container_name" {}
-# variable "launch_type" {}
-# variable "execution_role_arn" {}
+variable "container_name" {}
+variable "launch_type" {}
+variable "execution_role_arn" {}
 # variable "ecs_container_service_autoscale_role" {}
 # variable "target_type" {}
+variable "ecs_cluster_name" {}
+variable "iam_instance_profile" {}
+variable "key_name" {}
+variable "instance_type" {}
+
+

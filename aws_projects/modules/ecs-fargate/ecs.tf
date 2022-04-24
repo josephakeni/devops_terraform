@@ -8,10 +8,10 @@ data "template_file" "cb_app" {
   vars = {
     app_image      = var.app_image
     app_port       = var.app_port
-    cpu_size    = var.cpu_size
-    memory_size = var.memory_size
+    cpu_size       = var.cpu_size
+    memory_size    = var.memory_size
     aws_region     = var.aws_region
-    network_mode = var.network_mode
+    network_mode   = var.network_mode
     container_name = var.container_name
   }
 }
@@ -19,7 +19,7 @@ data "template_file" "cb_app" {
 resource "aws_ecs_task_definition" "app" {
   family                   = "${var.app_name}-app-task"
   execution_role_arn       = var.execution_role_arn #aws_iam_role.ecs_task_execution_role.arn
-  network_mode             = var.network_mode #"awsvpc"
+  network_mode             = var.network_mode       #"awsvpc"
   requires_compatibilities = [var.launch_type]
   cpu                      = var.cpu_size
   memory                   = var.memory_size
@@ -34,8 +34,8 @@ resource "aws_ecs_service" "main" {
   launch_type     = var.launch_type #"FARGATE"
 
   network_configuration {
-    security_groups  = [data.terraform_remote_state.network.outputs.ecs-lbsg]
-    subnets          = [data.terraform_remote_state.network.outputs.private_subnets[0], data.terraform_remote_state.network.outputs.private_subnets[1]] #aws_subnet.private.*.id
+    security_groups  = var.security_groups
+    subnets          = var.subnets #[data.terraform_remote_state.network.outputs.private_subnets[0], data.terraform_remote_state.network.outputs.private_subnets[1]] #aws_subnet.private.*.id
     assign_public_ip = true
   }
 
