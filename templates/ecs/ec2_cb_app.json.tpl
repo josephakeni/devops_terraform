@@ -4,7 +4,7 @@
     "memory": 512,
     "name": "${container_name}",
     "cpu": 2,
-    "image": "jakeni/jotonia-app:myapp1",
+    "image": "${app_image}",
     "environment": [],
     "portMappings": [
       {

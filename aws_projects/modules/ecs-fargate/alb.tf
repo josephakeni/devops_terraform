@@ -1,11 +1,11 @@
 resource "aws_alb" "main" {
-  name            = "${var.app_name}-load-balancer"
+  name            = "${var.ecs_cluster_name}-load-balancer"
   subnets         = var.subnets
   security_groups = var.security_groups
 }
 
 resource "aws_alb_target_group" "app" {
-  name        = "${var.app_name}-target-group"
+  name        = "${var.ecs_cluster_name}-target-group"
   port        = 80
   protocol    = "HTTP"
   vpc_id      = var.aws_vpc_main

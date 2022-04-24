@@ -56,7 +56,7 @@ variable "network_mode" {}
 variable "aws_vpc_main" {}
 variable "subnets" {}
 variable "security_groups" {}
-variable "app_name" {}
+variable "ecs_cluster_name" {}
 variable "container_name" {}
 variable "launch_type" {}
 variable "execution_role_arn" {}

@@ -23,14 +23,14 @@
 #   default     = "2"
 # }
 
-# variable "app_image" {
-#   description = "Docker image to run in the ECS cluster"
-#   default     = "jakeni/jotonia-app:myapp1"
-# }
+variable "app_image" {
+  description = "Docker image to run in the ECS cluster"
+  default     = "jakeni/jotonia-app:myapp1"
+}
 
 variable "app_port" {
   description = "Port exposed by the docker image to redirect traffic to"
-  default     = 3000
+  default     = 8000
 }
 
 variable "app_count" {
