@@ -1,15 +1,15 @@
 resource "aws_alb" "main" {
-  name            = "${var.app_name}-load-balancer"
-  subnets         = var.subnets 
+  name            = "${var.ecs_cluster_name}-load-balancer"
+  subnets         = var.subnets
   security_groups = var.security_groups
 }
 
 resource "aws_alb_target_group" "app" {
-  name        = "${var.app_name}-target-group"
+  name        = "${var.ecs_cluster_name}-target-group"
   port        = 80
   protocol    = "HTTP"
-  vpc_id      = var.aws_vpc_main #var.aws_vpc_main
-  target_type = "ip"
+  vpc_id      = var.aws_vpc_main
+  target_type = var.target_type #"ip"
 
   health_check {
     healthy_threshold   = "3"

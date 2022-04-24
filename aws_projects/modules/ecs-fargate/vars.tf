@@ -42,18 +42,23 @@ variable "health_check_path" {
   default = "/"
 }
 
-variable "fargate_cpu" {
+variable "cpu_size" {
   description = "Fargate instance CPU units to provision (1 vCPU = 1024 CPU units)"
-  default     = "1024"
+  default     = "256"
 }
 
-variable "fargate_memory" {
+variable "memory_size" {
   description = "Fargate instance memory to provision (in MiB)"
-  default     = "2048"
+  default     = "512"
 }
 
+variable "network_mode" {}
 variable "aws_vpc_main" {}
 variable "subnets" {}
 variable "security_groups" {}
-variable "app_name" {}
+variable "ecs_cluster_name" {}
 variable "container_name" {}
+variable "launch_type" {}
+variable "execution_role_arn" {}
+variable "ecs_container_service_autoscale_role" {}
+variable "target_type" {}

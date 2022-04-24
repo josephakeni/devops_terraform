@@ -22,16 +22,16 @@ resource "aws_route_table" "public_route_table" {
 resource "aws_route_table" "private_route_table" {
   vpc_id = aws_vpc.main.id
   # count  = var.az_count
-  route {
-    /* IP routing is destination based. 
-    The destination must be an IP prefix in CIDR notaion e.g 0.0.0.0/0 */
-    # cidr_block = Destionation.
-    cidr_block = "0.0.0.0/0"
-    /* The target must be an AWS network reso urce such as 
-    internet gateway or Elastic Network Interface */
-    # gateway_id= Target
-    gateway_id = aws_nat_gateway.nat_gw[0].id #element(aws_nat_gateway.nat_gw.*.id, count.index)
-  }
+  # route {
+  #   /* IP routing is destination based. 
+  #   The destination must be an IP prefix in CIDR notaion e.g 0.0.0.0/0 */
+  #   # cidr_block = Destionation.
+  #   cidr_block = "0.0.0.0/0"
+  #   /* The target must be an AWS network reso urce such as 
+  #   internet gateway or Elastic Network Interface */
+  #   # gateway_id= Target
+  #   gateway_id = aws_nat_gateway.nat_gw[0].id #element(aws_nat_gateway.nat_gw.*.id, count.index)
+  # }
 
   tags = {
     Name = "private_route_table"

@@ -14,15 +14,6 @@ module "main_vpc" {
   availability_zones  = var.availability_zones
 }
 
-module "ecs-lbsg" {
-  source              = "../modules/securityGroups"
-  aws_vpc_main        = data.terraform_remote_state.network.outputs.main_vpc_id
-  name                = "ecs-lbsg"
-  description         = "Allow traffic to KAFKA from instances"
-  ingress_rules = var.ingress_rules
-
-}
-
 # module "alb" {
 #  source       = "../modules/alb"
 #  aws_vpc_main = data.terraform_remote_state.network.outputs.main_vpc_id

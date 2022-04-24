@@ -18,9 +18,7 @@ output "main_sg_id" {
   value = module.main_vpc.main_sg_id
 }
 
-output "ecs-lbsg" {
-  value = module.ecs-lbsg.sg_id
-}
+
 
 # output "nat_eip_id" {
 #   value = "${module.main_vpc.nat_eip_id}"
