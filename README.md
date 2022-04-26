@@ -23,5 +23,3 @@ terraform apply -var-file=environments/dev.tfvars
 ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts playbook.yaml --check
 ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventory/hosts playbooks/playbook.yaml --check
 ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventory/dev/hosts playbooks/kafka.yaml -C
-
-git push -d origin dev
